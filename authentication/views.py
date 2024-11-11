@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import AccountCreationForm, ProfileForm
-from .models import Profile
+from .forms import AccountCreationForm
+
 
 # Create your views here.
 
@@ -11,17 +11,18 @@ from .models import Profile
 def register(request):
     if request.method == "POST":
         form = AccountCreationForm(request.POST)
+        if form.errors:
+            print(form.errors)
         if form.is_valid():
             user = form.save()
             messages.success(request, 'signup successful, please login')
-
             #redirecting to the login page 
             return redirect('login')
         else:
             messages.error(request, 'incorrect credentials')
     else:
         form = AccountCreationForm()
-    return render(request, 'auths/registration.html', {"forms" : form })
+    return render(request, 'auths/register.html', {"forms" : form })
 
 
 def login_view(request):
@@ -46,6 +47,4 @@ def logout_view(request):
     messages.success(request, 'you logged out successfully')
     return redirect('login')
 
-def profile(request):
-    form = ProfileForm()
-    return render(request, 'auths/settings.html', {'forms': form})
+

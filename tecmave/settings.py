@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'volunteers'
+    'authentication',
+    'fundraising'
 ]
 
 MIDDLEWARE = [
@@ -117,7 +118,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/'  # This is the URL path that will serve your static files
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Directory where your static files are stored during development
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"  # This is where static files are collected in production
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

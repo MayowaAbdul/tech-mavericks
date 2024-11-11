@@ -1,0 +1,88 @@
+{% extends 'base.html '%}
+{% load static %}
+        {% block content %}
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Ask for Donation Now</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Home</a>
+                        <a href="">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        <div class="container">
+            <div class="donate" data-parallax="scroll" data-image-src="{% static 'img/donate.jpg' %}">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="donate-content">
+                            <div class="section-header">
+                                <p>Create Campaign</p>
+                                <h2>Find millions of volunteers to help you reach your Goal</h2>
+                            </div>
+                            <div class="donate-text">
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non. Aliquam metus tortor, auctor id gravida, viverra quis sem. Curabitur non nisl nec nisi maximus. Aenean convallis porttitor. Aliquam interdum at lacus non blandit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="donate-form">
+                            <form method="post" action="{% url 'campaign' %}" enctype="multipart/form-data">
+                                {% if messages %}
+                                    {{ messages.error }}
+                                {% endif %}
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <!-- <div class="control-group">
+                                    <label class="form-label">Proof of Campaign</label>
+                                    <input type="file" class="form-control-sm" required="required" name="profile_image" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control"placeholder="Add Title" required="required" name="title" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" placeholder="+(234)9078901345" name="phone_number" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Goals</label>
+                                    <input type="number" class="form-control" placeholder="10000" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Amount Raised</label>
+                                    <input type="Number" class="form-control" placeholder="0" readonly />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Campaign Purpose</label><br>
+                                    {{ form.campaign_purpose }}
+                                </div> -->
+
+                                
+                                <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-custom active">
+                                        <input type="radio" name="options" checked> $10
+                                    </label>
+                                    <label class="btn btn-custom">
+                                        <input type="radio" name="options"> $20
+                                    </label>
+                                    <label class="btn btn-custom">
+                                        <input type="radio" name="options"> $30
+                                    </label>
+                                </div> -->
+                                <div>
+                                    <button class="btn btn-custom" type="submit">Create Campaign</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

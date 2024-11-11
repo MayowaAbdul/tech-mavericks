@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+         <!-- Page Header Start -->
+         <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Donate Now</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Home</a>
+                        <a href="">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        <!-- Causes Start -->
+        <div class="causes">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Popular Causes</p>
+                    <h2>Let's know about charity causes around the world</h2>
+                </div>
+                <div class="owl-carousel causes-carousel">
+                    {% for campaign in campaigns %}
+                        <div class="causes-item">
+                            <div class="causes-img">
+                                {% if campaign.profile_picture %}
+                                    <img src="{{ campaign.profile_picture.url }}" alt="Image">
+                                {% endif %}
+                            </div>
+                            <div class="causes-progress">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                        <span>85%</span>
+                                    </div>
+                                </div>
+                                <div class="progress-text">
+                                    <p><strong>Raised:</strong> ${{ campaign.amount_raised }}</p>
+                                    <p><strong>Goal:</strong> ${{ campaign.goals }}</p>
+                                </div>
+                            </div>
+                            <div class="causes-text">
+                                <h3>{{ campaign.title }}</h3>
+                                <p>{{ campaign.campaign_purpose }}</p>
+                            </div>
+                            <div class="causes-btn">
+                                <a class="btn btn-custom">Learn More</a>
+                                <a class="btn btn-custom">Donate Now</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- <div class="causes-item">
+                        <div class="causes-img">
+                            <img src="{% static 'img/causes-2.jpg' %}" alt="Image">
+                        </div>
+                        <div class="causes-progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                    <span>85%</span>
+                                </div>
+                            </div>
+                            <div class="progress-text">
+                                <p><strong>Raised:</strong> $100000</p>
+                                <p><strong>Goal:</strong> $50000</p>
+                            </div>
+                        </div>
+                        <div class="causes-text">
+                            <h3>Lorem ipsum dolor sit</h3>
+                            <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
+                        </div>
+                        <div class="causes-btn">
+                            <a class="btn btn-custom">Learn More</a>
+                            <a class="btn btn-custom">Donate Now</a>
+                        </div>
+                    </div>
+                    <div class="causes-item">
+                        <div class="causes-img">
+                            <img src="{% static 'img/causes-3.jpg' %}" alt="Image">
+                        </div>
+                        <div class="causes-progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                    <span>85%</span>
+                                </div>
+                            </div>
+                            <div class="progress-text">
+                                <p><strong>Raised:</strong> $100000</p>
+                                <p><strong>Goal:</strong> $50000</p>
+                            </div>
+                        </div>
+                        <div class="causes-text">
+                            <h3>Lorem ipsum dolor sit</h3>
+                            <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
+                        </div>
+                        <div class="causes-btn">
+                            <a class="btn btn-custom">Learn More</a>
+                            <a class="btn btn-custom">Donate Now</a>
+                        </div>
+                    </div>
+                    <div class="causes-item">
+                        <div class="causes-img">
+                            <img src="{% static 'img/causes-4.jpg' %}" alt="Image">
+                        </div>
+                        <div class="causes-progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                    <span>85%</span>
+                                </div>
+                            </div>
+                            <div class="progress-text">
+                                <p><strong>Raised:</strong> $100000</p>
+                                <p><strong>Goal:</strong> $50000</p>
+                            </div>
+                        </div>
+                        <div class="causes-text">
+                            <h3>Lorem ipsum dolor sit</h3>
+                            <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
+                        </div>
+                        <div class="causes-btn">
+                            <a class="btn btn-custom">Learn More</a>
+                            <a class="btn btn-custom">Donate Now</a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- Causes End -->
+    {% endblock %}
