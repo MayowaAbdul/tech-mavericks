@@ -83,8 +83,8 @@ header{
 
 .wrapper{
     position: relative;
-    width: 400px;
-    height: 440px;
+    width: 800px;
+    height: 640px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
@@ -103,7 +103,7 @@ header{
 } 
 
 .wrapper.active{
-    height: 520px;
+    height: 620px;
 }
 
 .wrapper .form-box{
@@ -112,8 +112,8 @@ header{
 }
 
 .wrapper .form-box.login{
-     transition: transform .18s ease;
-     transform: translateX(0);
+    transition: transform .18s ease;
+    transform: translateX(0);
 }
 
 .wrapper.active .form-box.login{

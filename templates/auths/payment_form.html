@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+            <!-- Page Header Start -->
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Donate Now</h2>
+                        </div>
+                        <div class="col-12">
+                            <a href="index.html">Home</a>
+                            <a href="donate.html">Donate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Header End -->
+            
+            
+            <!-- Donate Start -->
+            <div class="container">
+                <div class="donate" data-parallax="scroll" data-image-src="{% static 'img/donate.jpg' %}">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7">
+                            <div class="donate-content">
+                                <div class="section-header">
+                                    <p>{{ campaign.title }}</p>
+                                    <p>{{ campaign.campaign_purpose }}</p>
+                                    <h2>Let's donate to needy people for better lives</h2>
+                                </div>
+                                <div class="donate-text">
+                                    <p>
+                                        Let's all be part of the people that'll make the world a better place by donating the little we have to the ones who are in need of help. And by doing so we'll put a smile on the faces of lots of people.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="donate-form">
+                                <form method="POST" action="{% url 'process_payment' campaign_id=campaign.id amount=amount %}">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}  <!-- Render the form fields here -->
+                                    <button type="submit">Submit Payment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Donate End -->
+  
+        
+    {% endblock %}

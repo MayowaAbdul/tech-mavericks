@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import AccountCreationForm
+from .forms import AccountCreationForm, ProfileForm, AccountUpdateForm
+from django.contrib.auth.models import User
+from .models import Profile
 
 
 # Create your views here.
@@ -47,4 +49,41 @@ def logout_view(request):
     messages.success(request, 'you logged out successfully')
     return redirect('login')
 
+
+def profile(request):
+    address = get_object_or_404(Profile, id=request.user.id)
+    return render(request, 'auths/profile.html' , {'address': address})
+
+def user_update(request):
+    if request.user.is_authenticated:
+        profile_info = User.objects.get(id=request.user.id)
+        user_form = AccountUpdateForm(request.POST or None, instance=profile_info)
+        if user_form.errors:
+            print(user_form.errors)
+        if user_form.is_valid():
+            user_form.save()
+            login(request, profile_info)
+            messages.success(request, 'user has been updated successfully')
+            return redirect('profile')
+        return render (request, 'auths/user.html', {'form' : user_form})
+    else:
+        messages.success(request, 'you need to login to be able to view this page')
+        return redirect('login')
+    
+def profile_update(request):
+    if request.user.is_authenticated:
+        profile_info = Profile.objects.get(id=request.user.id)
+        profile_form = ProfileForm(request.POST or None, instance=profile_info)
+        if profile_form.errors:
+            print(profile_form.errors)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'user has been updated successfully')
+            return redirect('profile')
+        return render (request, 'auths/settings.html', {'form' : profile_form})
+    else:
+        messages.success(request, 'you need to login to be able to view this page')
+        return redirect('login')
+        
+       
 

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Edit profile</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="index.html">Home</a>
+                        <a href="donate.html">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+
+        <!-- Donate Start -->
+        <div class="container">
+            <div class="donate" data-parallax="scroll" data-image-src="{% static 'img/donate.jpg' %}">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="donate-content">
+                            <div class="section-header">
+                                <h2>Please Ensure to Use Current Information</h2>
+                            </div>
+                            <div class="donate-text">
+                                <p>
+                                    Let's all be part of the people that'll make the world a better place by donating the little we have to the ones who are in need of help. And by doing so we'll put a smile on the faces of lots of people.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="donate-form">
+                            <form enctype="multipart/form-data" method="post" action="{% url 'edit_profile' %}">
+                                {% csrf_token %}
+                                <!-- {{ form.as_p }} -->
+
+                                <div class="control-group">
+                                    <label class="form-label">Phone  Number</label>
+                                    <input type="text" class="form-control" placeholder="" value="{{ form.phone_number.value }}" name="country" required="required" />
+                                </div>
+
+
+                                <div class="control-group">
+                                    <label class="form-label">Street</label>
+                                    <input type="text" class="form-control" placeholder="" value="{{ form.street.value }}" name="street" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" placeholder="" value="{{ form.city.value }}" name="city" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" placeholder="" value="{{ form.state.value }}" name="state" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Country</label>
+                                    <input type="text" class="form-control" placeholder="" value="{{ form.country.value }}" name="country" required="required" />
+                                </div>                         
+                                <div>
+                                    <button class="btn btn-custom" type="submit">Update profile</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Donate End -->
+    {% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>profile Information</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="index.html">Home</a>
+                        <a href="donate.html">Donate</a>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="donate" data-parallax="scroll" data-image-src="{% static 'img/donate.jpg' %}">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="donate-content">
+                            <div class="section-header">
+                                <h2>Please Ensure to Use Current Information</h2>
+                            </div>
+                            <div class="donate-text">
+                                <p>
+                                    Let's all be part of the people that'll make the world a better place by donating the little we have to the ones who are in need of help. And by doing so we'll put a smile on the faces of lots of people.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="donate-form">
+                            <p> first name : {{ user.first_name }} </p>
+                            <p> last name : {{ user.last_name }}</p>
+                            <p> email :  {{ user.email }} </p>
+                            <p> username :  {{ user.username }} </p>
+                            <p> state : {{ address.state}} </p>
+                            <p> country : {{ address.country }} </p>
+                            <p> city : {{ address.city }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+    {% endblock %}

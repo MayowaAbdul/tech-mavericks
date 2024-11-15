@@ -8,7 +8,7 @@ class CampaignForm(forms.ModelForm):
         exclude = ['user', 'amount_raised']
         fields =  '__all__'
         widgets = {
-            'profile_picture': forms.ClearableFileInput(attrs={'class': 'form-control'})
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control'})
         }
 
 
@@ -45,5 +45,17 @@ class CampaignForm(forms.ModelForm):
 class DonationForm(forms.ModelForm):
     class Meta:
         model = Donation
-        exclude = ['campaign', 'user']
+        exclude = ['campaign', 'user', 'payment_status']
         fields = '__all__'
+
+
+class PaymentForm(forms.Form):
+    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
+    email_address = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email Address'}))
+    phone_number = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'placeholder': 'Phone Number'}))
+    card_number = forms.CharField(max_length=16, widget=forms.TextInput(attrs={'placeholder': 'Card Number'}))
+    expiry_month = forms.CharField(max_length=2, widget=forms.TextInput(attrs={'placeholder': 'Expiry Month (MM)'}))
+    expiry_year = forms.CharField(max_length=2, widget=forms.TextInput(attrs={'placeholder': 'Expiry Year (YY)'}))
+    amount = forms.DecimalField(max_digits=10, decimal_places=2)
+    security_code = forms.CharField(max_length=4, widget=forms.TextInput(attrs={'placeholder': 'Security Code (CVV)'}))
