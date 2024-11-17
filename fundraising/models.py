@@ -12,7 +12,7 @@ User = get_user_model()
 class Campaign(models.Model):
     campaign_choices = [
         ('Child Education', 'child education'),
-        ('Child Healthare', 'child healthcare')
+        ('Child Healthcare', 'child healthcare')
     ]
 
 

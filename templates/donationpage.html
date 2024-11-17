@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-12">
                         <a href="{% url 'home' %}">Home</a>
-                        <a href="{% url 'donate' %}">Donate</a>
+                        <a href="{% url 'donationpage' %}">Donate</a>
                     </div>
                 </div>
             </div>
@@ -37,8 +37,8 @@
                                    
                                 </div>
                                 <div class="progress-text">
-                                    <p><strong>Raised:</strong> ${{ campaign.amount_raised }}</p>
-                                    <p><strong>Goal:</strong> ${{ campaign.goals }}</p>
+                                    <p><strong>Raised:</strong> N{{ campaign.amount_raised }}</p>
+                                    <p><strong>Goal:</strong> N{{ campaign.goals }}</p>
                                 </div>
                             </div>
                             <div class="causes-text">

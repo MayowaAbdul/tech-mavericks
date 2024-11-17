@@ -12,16 +12,18 @@
 <body>
     
 
-    <div class="wrapper2">
+    <div class="wrapper">
         
 
         <div class="form-box login">
             <h2>Login</h2>
-            <div class="alert alert-danger" role="alert">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
+            {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 <div class="input-box">
@@ -40,7 +42,7 @@
                 </div>
                 <button type="submit" class="btn">Login</button>
                 <div class="login-register">
-                    <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                    <p>Don't have an account?<a href="{% url 'register' %}" class="register-link">Register</a></p>
                 </div>
             </form>
         </div>

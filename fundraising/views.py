@@ -37,7 +37,7 @@ def campaign_view(request):
 def campaign_info(request):
     try:
         campaign = Campaign.objects.get(user=request.user)
-        return render(request, 'campaignpage.html', {'campaigns': campaign})
+        return render(request, 'campaignpage.html', {'campaign': campaign})
     except Campaign.DoesNotExist:
         return render(request, 'nocampaign.html')
 

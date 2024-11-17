@@ -13,9 +13,6 @@ from .models import Profile
 def register(request):
     if request.method == "POST":
         form = AccountCreationForm(request.POST)
-        if form.errors:
-            print(form.errors)
-            # add a list of errors to user 
         if form.is_valid():
             user = form.save()
             messages.success(request, 'signup successful, please login')
@@ -56,7 +53,7 @@ def logout_view(request):
 
 
 def profile(request):
-    address = get_object_or_404(Profile, id=request.user.id)
+    address = get_object_or_404(Profile, user=request.user)
     return render(request, 'auths/profile.html' , {'address': address})
 
 def user_update(request):
