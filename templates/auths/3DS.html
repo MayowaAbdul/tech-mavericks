@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='threedsChallengeRedirect' xmlns='http://www.w3.org/1999/html' style=' height: 100vh'>
+        <form id='threedsChallengeRedirectForm' method='POST' action='https://mtf.gateway.mastercard.com/acs/visa/v2/prompt'>
+            <input type='hidden' name='creq' id="creq" value=""/>
+        </form>
+        <iframe id='challengeFrame' name='challengeFrame' width='100%' height='100%'></iframe>
+    </div>
+  
+    <script>
+
+        fetch("https://cards-live.78financials.com/card_charge/", requestOptions).then(response => response.text()).then(result => {
+            console.log("RAW RESULT: ", result)
+            result = JSON.parse(result);
+            if (result.statusOk) { // ///Handle Success Response
+                if (result.do3dsAuth) {
+                    const creq = document.getElementById("creq");
+                    creq.value = result.formData;
+                    const form = document.getElementById("threedsChallengeRedirectForm");
+                    form.setAttribute("action", result.threeDsUrl);
+                    form.submit();
+                } else {
+                    console.log("Payment Process Journey Completed")
+                }
+            } else { // ///Handle Error
+                console.log("Error found", result.debugMessage)
+                alert("Payment Failed: " + result.debugMessage)
+            }
+        }).catch(error => {
+            console.log("::::::::::Error::::::::::", error)
+            alert("Exception Error: " + error.debugMessage)
+        });
+  
+        // ///////////Internal Payment Notification
+        window.addEventListener("message", (event) => {
+            console.log("::::::::::::::::::MESSAGE EVENT GOT BACK FROM BACK-END::::::::::::::::::::::")
+            const response = JSON.parse(event.data);
+            console.log("Payment Notification", response)
+            if (response.statusOk === true && response.paymentCompleted === true) { // ////Handle payment successful, do business logic
+                alert("Payment Successful")
+            } else { // ///Handle Failed payment
+                alert("Payment Failed")
+            }
+        });
+    </script>
+  </body>
+    
+  
+        
+</html>

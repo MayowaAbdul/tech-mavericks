@@ -10,8 +10,8 @@
                         <h2>Edit profile</h2>
                     </div>
                     <div class="col-12">
-                        <a href="index.html">Home</a>
-                        <a href="donate.html">Donate</a>
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'donate' %}">Donate</a>
                     </div>
                 </div>
             </div>
@@ -36,6 +36,19 @@
                         </div>
                     </div>
                     <div class="col-lg-5">
+                        {% if messages %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                        
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                        {% endif %}
+                        
                         <div class="donate-form">
                             <form enctype="multipart/form-data" method="post" action="{% url 'edit_profile' %}">
                                 {% csrf_token %}
@@ -43,7 +56,8 @@
 
                                 <div class="control-group">
                                     <label class="form-label">Phone  Number</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{ form.phone_number.value }}" name="country" required="required" />
+                                    <input type="text" class="form-control" placeholder="" value="{{ form.phone_number.value }}" name="phone_number" required="required" />
+                                    
                                 </div>
 
 
@@ -61,7 +75,12 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="form-label">Country</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{ form.country.value }}" name="country" required="required" />
+                        
+                                    <select name="country" id="" class="form-control">
+                                        <option value="Nigeria">Nigeria</option>
+                                        <option value="South Africa">South Africa</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control" placeholder="" value="{{ form.country.value }}" name="country" required="required" /> -->
                                 </div>                         
                                 <div>
                                     <button class="btn btn-custom" type="submit">Update profile</button>

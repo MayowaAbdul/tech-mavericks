@@ -15,6 +15,7 @@ def register(request):
         form = AccountCreationForm(request.POST)
         if form.errors:
             print(form.errors)
+            # add a list of errors to user 
         if form.is_valid():
             user = form.save()
             messages.success(request, 'signup successful, please login')
@@ -22,27 +23,31 @@ def register(request):
             return redirect('login')
         else:
             messages.error(request, 'incorrect credentials')
+            return render(request,'auths/register.html', {"forms" : form } )
     else:
         form = AccountCreationForm()
     return render(request, 'auths/register.html', {"forms" : form })
 
 
 def login_view(request):
-        if request.method == 'POST':
-            form = AuthenticationForm(request, request.POST)
-            if form.is_valid():
-                username = form.cleaned_data['username']
-                password = form.cleaned_data['password']
-                user = authenticate(request, username=username, password=password)
-                if user is not None:
-                    login(request, user=user)
-                    return redirect('home')
-                else:
-                    messages.error(request, 'User with this email or password does not exist')
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.errors:
+            print(form.errors)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user=user)
+                return redirect('home')
             else:
-                messages.error(request, 'please kindly check your info')    
-        return render(request, 'auths/login.html')
-    
+                messages.error(request, 'User with this email or password does not exist')
+        else:
+            messages.error(request, 'please kindly check your info') 
+
+    return render(request, 'auths/login.html')
+
 
 def logout_view(request):
     logout(request)
@@ -65,6 +70,8 @@ def user_update(request):
             login(request, profile_info)
             messages.success(request, 'user has been updated successfully')
             return redirect('profile')
+        else:
+            messages.error(request, 'please recheck your Info')
         return render (request, 'auths/user.html', {'form' : user_form})
     else:
         messages.success(request, 'you need to login to be able to view this page')

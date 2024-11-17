@@ -1,0 +1,2 @@
+ web: gunicorn fundraising.wsgi --log-file
+ web: python manage.py migrate && fundraising.wsg

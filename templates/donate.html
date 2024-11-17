@@ -3,21 +3,42 @@
         {% block content %}
         
         
-        <!-- Page Header Start -->
-        <div class="page-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h2>Donate Now</h2>
-                    </div>
-                    <div class="col-12">
-                        <a href="index.html">Home</a>
-                        <a href="donate.html">Donate</a>
+            <!-- Page Header Start -->
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Donate Now</h2>
+                        </div>
+                        <div class="col-12">
+                            <a href="{% url 'home' %}">Home</a>
+                            <a href="{% url 'donate' %}">Donate</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Page Header End -->
+            <!-- Page Header End -->
+
+            
+
+                    <div class="container">
+                        <div class="causes-item">
+                            <div class="causes-img">
+                                <img src='{{ campaign.image.url }}' alt="Image">       
+                            </div>
+                            <div class="causes-progress">
+                                <div class="progress-text">
+                                    <p><strong>Raised:</strong> ${{ campaign.amount_raised }}</p>
+                                    <p><strong>Goal:</strong> ${{ campaign.goals }}</p>
+                                </div>
+                            </div>
+                            <div class="causes-text">
+                                <h3>{{ campaign.title }}</h3>
+                                <p>{{ campaign.campaign_purpose }}</p>
+                            </div>
+                        </div>
+                    </div>
+                  
         
         
         <!-- Donate Start -->
@@ -27,8 +48,6 @@
                     <div class="col-lg-7">
                         <div class="donate-content">
                             <div class="section-header">
-                                <p>{{ campaign.title }}</p>
-                                <p>{{ campaign.campaign_purpose }}</p>
                                 <h2>Let's donate to needy people for better lives</h2>
                             </div>
                             <div class="donate-text">
@@ -40,16 +59,27 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="donate-form">
+                            {% if messages %}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                
+                                    {% for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                            
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                            {% endif %}
                             <form enctype="multipart/form-data" method="post" action="{% url 'donate' campaign.id %}">
                                 {% csrf_token %}
-                                {{ form.as_p }}
-                                <!-- <div class="control-group">
-                                    <input type="text" class="form-control" placeholder="Name" required="required" />
+                                <div class="control-group">
+                                    <input type="number" class="form-control" placeholder="amount" required="required" name="amount" />
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="form-control" placeholder="Email" required="required" />
+                                    <input type="text" class="form-control" placeholder="message" name="message" />
                                 </div>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-custom active">
                                         <input type="radio" name="options" checked> $10
                                     </label>

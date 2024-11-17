@@ -59,3 +59,12 @@ class PaymentForm(forms.Form):
     expiry_year = forms.CharField(max_length=2, widget=forms.TextInput(attrs={'placeholder': 'Expiry Year (YY)'}))
     amount = forms.DecimalField(max_digits=10, decimal_places=2)
     security_code = forms.CharField(max_length=4, widget=forms.TextInput(attrs={'placeholder': 'Security Code (CVV)'}))
+
+class WithdrawalForm(forms.Form):
+    amount = forms.DecimalField(max_digits=6, max_value=999999, decimal_places=2, required=True,)
+    account_number = forms.IntegerField(required=True)
+    account_name = forms.CharField(required=True, )
+    bank_code = forms.IntegerField(required=True)
+    narration = forms.CharField(max_length=80, required=False)
+    
+
