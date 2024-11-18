@@ -41,6 +41,58 @@
                                 <form method="POST" action="{% url 'process_payment' campaign_id=campaign.id amount=amount %}">
                                     {% csrf_token %}
                                     {{ form.as_p }}  <!-- Render the form fields here -->
+                                    <div class="col-lg-5">
+                                        <div class="donate-form">
+                                
+                                                {% if messages %}
+                                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                    
+                                                        {% for message in messages %}
+                                                            {{ message }}
+                                                        {% endfor %}
+                                                
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                {% endif %}
+                                                <!-- <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="formFile" name="image">
+                                                    <label class="custom-file-label" for="formFile">Proof of campaign</label>
+                                                </div><br><br> -->
+                                                                   
+                                                <div class="control-group">
+                                                    <label class="form-label">Amount</label>
+                                                    <input type="number" class="form-control" required="required" name="amount" />
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="form-label">Account Number</label>
+                                                    <input type="number " class="form-control" placeholder="+(234)9078901345" name="account_number" required="required" />
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="form-label">Account Name</label>
+                                                    <input type="text" class="form-control" required="required" name="account_name" />
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="form-label">Bank code</label>
+                                                    <input type="number" class="form-control" required="required" name="Bank_code" />
+                                                </div>
+                                    
+                                                <div class="control-group">
+                                                    <label class="form-label">Campaign Purpose</label>
+                                                   <select class="form-control" aria-label="Default select example" name="campaign_purpose">   
+                                                        <option selected>select</option>
+                                                        <option value="Child Education" style="background-color: black;">Child Education</option>
+                                                        <option value="Child Healthcare" style="background-color: black;" >Child Healthcare</option>
+                                            
+                                                      </select>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-custom" type="submit">Create Campaign</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                     <button type="submit">Submit Payment</button>
                                 </form>
                             </div>

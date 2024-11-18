@@ -16,18 +16,18 @@
     </div>
 
     {% if campaign %}
-        <div class="owl-carousel causes-carousel">
-                <div class="causes-item">
+        <!-- <div class="owl-carousel causes-carousel">
+                <div class="causes-item"> -->
                     <div class="causes-img">
                         <img src='{{ campaign.image.url }}' alt="Image">       
                     </div>
                     <div class="causes-progress">
-                        <div class="progress">
+                        <!-- <div class="progress">
                             <div class="progress-bar" role="progressbar" aria-valuenow="{{ campaign.progress }}" aria-valuemin="0" aria-valuemax="100">
                                 <span> {{ campaign.progress }}</span>
                             </div>
                         
-                        </div>
+                        </div> -->
                         <div class="progress-text">
                             <p><strong>Raised:</strong> ${{ campaign.amount_raised }}</p>
                             <p><strong>Goal:</strong> ${{ campaign.goals }}</p>
@@ -41,7 +41,7 @@
                         <a class="btn btn-custom">Learn More</a>
                         <a class="btn btn-custom" href="{% url 'withdraw' %}">Withdraw</a>
                     </div>
-                </div>
-        </div>
+                <!-- </div>
+        </div> -->
     {% endif %}
     {% endblock %}
