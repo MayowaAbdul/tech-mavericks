@@ -13,7 +13,7 @@ urlpatterns = [
     path('campaign-info/', campaign_info, name='campaigninfo'),
     path('donate/', default_donation_page, name='donationpage'), 
     path('donate/<int:campaign_id>/', donation, name='donate' ),
-    path('process-payment/<str:amount>/<int:campaign_id>', process_payment, name='process_payment'),
+    path('process-payment/<str:amount>/<int:campaign_id>', process_payment, name='process-payment'),
     path('payment-success/', payment_success, name='payment_success' ),
     path('payment-failed/', payment_failed, name='payment_failed'),
     path('about/', about_view, name='about'),
@@ -27,3 +27,5 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+   

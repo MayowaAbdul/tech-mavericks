@@ -58,13 +58,13 @@ def profile(request):
 
 def user_update(request):
     if request.user.is_authenticated:
-        profile_info = User.objects.get(id=request.user.id)
-        user_form = AccountUpdateForm(request.POST or None, instance=profile_info)
+        user_info = User.objects.get(id=request.user.id)
+        user_form = AccountUpdateForm(request.POST or None, instance=user_info)
         if user_form.errors:
             print(user_form.errors)
         if user_form.is_valid():
             user_form.save()
-            login(request, profile_info)
+            login(request, user_info)
             messages.success(request, 'user has been updated successfully')
             return redirect('profile')
         else:
@@ -76,7 +76,7 @@ def user_update(request):
     
 def profile_update(request):
     if request.user.is_authenticated:
-        profile_info = Profile.objects.get(id=request.user.id)
+        profile_info = Profile.objects.get(user=request.user)
         profile_form = ProfileForm(request.POST or None, instance=profile_info)
         if profile_form.errors:
             print(profile_form.errors)

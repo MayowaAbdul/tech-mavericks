@@ -3,9 +3,16 @@ import json
 import base64
 import time, random
 from django.http import JsonResponse
+from dotenv import load_dotenv
+import os 
 
 
-api_key = 'PZ78-PKTEST-FEB6D9D6-B140-41DF-AEE2-7591E05E4195'
+load_dotenv('.env')
+
+
+
+
+api_key: str = os.getenv('API_KEY')
 
 encoded_api_key = base64.b64encode(api_key.encode('utf-8')).decode('utf-8')
 

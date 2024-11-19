@@ -67,7 +67,7 @@ def donation(request, campaign_id):
             donate.campaign_id = campaign_id
             amount = donate.amount
 
-            return redirect('process_payment', amount=amount, campaign_id=campaign_id)
+            return redirect('process-payment', amount, campaign_id)
         else:
             messages.error(request, 'please fill out the form')
     else:
