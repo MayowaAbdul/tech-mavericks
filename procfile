@@ -1,2 +1,1 @@
- web: gunicorn fundraising.wsgi --log-file
- web: python manage.py migrate && fundraising.wsg
+web: gunicorn tecmave.wsgi:application --log-file=-
