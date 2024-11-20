@@ -56,7 +56,7 @@ def logout_view(request):
 @login_required(login_url='login')
 def profile(request):
     address = get_object_or_404(Profile, user=request.user)
-    return render(request, 'auths/profile.html' , {'address': address})
+    return render(request, 'profile.html' , {'address': address})
 
 
 @login_required(login_url='login')
