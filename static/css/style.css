@@ -1000,11 +1000,14 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 .causes .causes-img {
     overflow: hidden;
+    height: 200px;
+    position: relative;
 }
 
 .causes .causes-img img {
     width: 100%;
     transition: .3s;
+    object-fit: contain;
 }
 
 .causes .causes-item:hover img {

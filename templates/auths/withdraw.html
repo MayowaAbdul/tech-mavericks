@@ -1,0 +1,82 @@
+{% extends 'base.html '%}
+{% load static %}
+        {% block content %}
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Ask for Donation Now</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'donationpage' %}">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        <div class="container">
+            <div class="donate" data-parallax="scroll" data-image-src="{% static 'img/donate.jpg' %}">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="donate-content">
+                            <div class="section-header">
+                                <p>Create Campaign</p>
+                                <h2>Find millions of volunteers to help you reach your Goal</h2>
+                            </div>
+                            <div class="donate-text">
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non. Aliquam metus tortor, auctor id gravida, viverra quis sem. Curabitur non nisl nec nisi maximus. Aenean convallis porttitor. Aliquam interdum at lacus non blandit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="donate-form">
+                            <form method="post" action="{% url 'withdraw' %}" enctype="multipart/form-data">
+                                {% if messages %}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    
+                                        {% for message in messages %}
+                                            {{ message }}
+                                        {% endfor %}
+                                
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                                {% csrf_token %}
+                                <!-- <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="formFile" name="image">
+                                    <label class="custom-file-label" for="formFile">Proof of campaign</label>
+                                </div><br><br> -->
+                                                   
+                                <div class="control-group">
+                                    <label class="form-label">Amount</label>
+                                    <input type="number" class="form-control" required="required" name="amount" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Account Number</label>
+                                    <input type="number " class="form-control" placeholder="+(234)9078901345" name="account_number" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Account Name</label>
+                                    <input type="text" class="form-control" required="required" name="account_name" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Bank code</label>
+                                    <input type="number" class="form-control" required="required" name="Bank_code" />
+                                </div>
+                    
+                
+                                <div>
+                                    <button class="btn btn-custom" type="submit">Withdraw</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

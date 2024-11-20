@@ -1,54 +1,108 @@
-{% extends 'base.html' %}
+{% extends 'base.html '%}
 {% load static %}
-    {% block content %}
-            <!-- Page Header Start -->
-            <div class="page-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Donate Now</h2>
-                        </div>
-                        <div class="col-12">
-                            <a href="index.html">Home</a>
-                            <a href="donate.html">Donate</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Page Header End -->
-            
-            
-            <!-- Donate Start -->
+        {% block content %}
+        <div class="page-header">
             <div class="container">
-                <div class="donate" data-parallax="scroll" data-image-src="{% static 'img/donate.jpg' %}">
-                    <div class="row align-items-center">
-                        <div class="col-lg-7">
-                            <div class="donate-content">
-                                <div class="section-header">
-                                    <p>{{ campaign.title }}</p>
-                                    <p>{{ campaign.campaign_purpose }}</p>
-                                    <h2>Let's donate to needy people for better lives</h2>
-                                </div>
-                                <div class="donate-text">
-                                    <p>
-                                        Let's all be part of the people that'll make the world a better place by donating the little we have to the ones who are in need of help. And by doing so we'll put a smile on the faces of lots of people.
-                                    </p>
-                                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Ask for Donation Now</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'donationpage' %}">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        <div class="container">
+            <div class="donate" data-parallax="scroll" data-image-src="{% static 'img/donate.jpg' %}">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="donate-content">
+                            <div class="section-header">
+                                <p>Create Campaign</p>
+                                <h2>Find millions of volunteers to help you reach your Goal</h2>
+                            </div>
+                            <div class="donate-text">
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non. Aliquam metus tortor, auctor id gravida, viverra quis sem. Curabitur non nisl nec nisi maximus. Aenean convallis porttitor. Aliquam interdum at lacus non blandit.
+                                </p>
                             </div>
                         </div>
-                        <div class="col-lg-5">
-                            <div class="donate-form">
-                                <form method="POST" action="{% url 'process_payment' campaign_id=campaign.id amount=amount %}">
-                                    {% csrf_token %}
-                                    {{ form.as_p }}  <!-- Render the form fields here -->
-                                    <button type="submit">Submit Payment</button>
-                                </form>
-                            </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="donate-form">
+                            <form method="post" action="{% url 'process-payment' amount=amount campaign_id=campaign.id %}">
+                                {% csrf_token %}
+                                {% if messages %}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    
+                                        {% for message in messages %}
+                                            {{ message }}
+                                        {% endfor %}
+                                
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                               
+                                <!-- <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="formFile" name="image">
+                                    <label class="custom-file-label" for="formFile">Proof of campaign</label>
+                                </div><br><br> -->
+                                                   
+                                <div class="control-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" required="required" name="first_name" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Last name</label>
+                                    <input type="text" class="form-control" name="last_name" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" required="required" name="email_address" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" required="required" name="email_address" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Card Number</label>
+                                    <input type="email" class="form-control" required="required" name="Card Number" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Expiry month</label>
+                                    <input type="number" class="form-control" required="required" name="expiry_month" />
+                                </div>
+                    
+                                <div class="control-group">
+                                    <label class="form-label">Expiry Year</label>
+                                    <input type="number" class="form-control" required="required" name="expiry_year" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Amount</label>
+                                    <input type="number" class="form-control" required="required" name="amount" />
+                                </div>
+                                <div class="control-group">
+                                    <label class="form-label">Cvv</label>
+                                    <input type="number" class="form-control" required="required" name="security_code" />
+                                </div>
+    
+                                <div>
+                                    <button class="btn btn-custom" type="submit">Confirm</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Donate End -->
-  
-        
-    {% endblock %}
+        </div>
+        <script>
+            $('#formFile').on('change', function(){
+                var filename = $
+            })
+        </script>
+        {% endblock %}

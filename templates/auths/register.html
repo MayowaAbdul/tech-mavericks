@@ -13,8 +13,20 @@
 
     <div class="wrapper2">
 
-        <div class="form-box login">
+        <div class="form-box register">
             <h2>Registration</h2>
+            {% if messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+            
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            {% endif %}
             <form action="{% url 'register'%}" method="post" >
                 {% csrf_token %}
                 <div class="input-box">
@@ -34,7 +46,7 @@
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <input type="email" required>
+                    <input type="email" name="email" required>
                     <label>Email</label>
                 </div>
                 <div class="input-box">
@@ -49,7 +61,7 @@
                     <label>Confirm Password</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox">I agree to the terms & conditions</label>
+                    <label><input type="checkbox" name="agree_to_terms">I agree to the terms & conditions</label>
                     
                 </div>
                 <button type="submit" class="btn">Register</button>

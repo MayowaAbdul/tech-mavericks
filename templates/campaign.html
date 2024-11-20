@@ -8,8 +8,8 @@
                         <h2>Ask for Donation Now</h2>
                     </div>
                     <div class="col-12">
-                        <a href="">Home</a>
-                        <a href="">Donate</a>
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'donationpage' %}">Donate</a>
                     </div>
                 </div>
             </div>
@@ -35,14 +35,23 @@
                         <div class="donate-form">
                             <form method="post" action="{% url 'campaign' %}" enctype="multipart/form-data">
                                 {% if messages %}
-                                    {{ messages.error }}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    
+                                        {% for message in messages %}
+                                            {{ message }}
+                                        {% endfor %}
+                                
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 {% endif %}
                                 {% csrf_token %}
-                                {{ form.as_p }}
-                                <!-- <div class="control-group">
-                                    <label class="form-label">Proof of Campaign</label>
-                                    <input type="file" class="form-control-sm" required="required" name="profile_image" />
-                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="formFile" name="image">
+                                    <label class="custom-file-label" for="formFile">Proof of campaign</label>
+                                </div><br><br>
+                                                   
                                 <div class="control-group">
                                     <label class="form-label">Title</label>
                                     <input type="text" class="form-control"placeholder="Add Title" required="required" name="title" />
@@ -53,29 +62,18 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="form-label">Goals</label>
-                                    <input type="number" class="form-control" placeholder="10000" required="required" />
+                                    <input type="number" class="form-control" placeholder="10000" required="required" name="goals" />
                                 </div>
+                    
                                 <div class="control-group">
-                                    <label class="form-label">Amount Raised</label>
-                                    <input type="Number" class="form-control" placeholder="0" readonly />
+                                    <label class="form-label">Campaign Purpose</label>
+                                   <select class="form-control" aria-label="Default select example" name="campaign_purpose">   
+                                        <option selected>select</option>
+                                        <option value="Child Education" style="background-color: black;">Child Education</option>
+                                        <option value="Child Healthcare" style="background-color: black;" >Child Healthcare</option>
+                            
+                                      </select>
                                 </div>
-                                <div class="control-group">
-                                    <label class="form-label">Campaign Purpose</label><br>
-                                    {{ form.campaign_purpose }}
-                                </div> -->
-
-                                
-                                <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-custom active">
-                                        <input type="radio" name="options" checked> $10
-                                    </label>
-                                    <label class="btn btn-custom">
-                                        <input type="radio" name="options"> $20
-                                    </label>
-                                    <label class="btn btn-custom">
-                                        <input type="radio" name="options"> $30
-                                    </label>
-                                </div> -->
                                 <div>
                                     <button class="btn btn-custom" type="submit">Create Campaign</button>
                                 </div>
@@ -85,4 +83,9 @@
                 </div>
             </div>
         </div>
+        <script>
+            $('#formFile').on('change', function(){
+                var filename = $
+            })
+        </script>
         {% endblock %}

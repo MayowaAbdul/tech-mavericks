@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Donate Now</h2>
+                </div>
+                <div class="col-12">
+                    <a href="{% url 'home' %}">Home</a>
+                    <a href="{% url 'donationpage' %}">Donate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if campaign %}
+        <!-- <div class="owl-carousel causes-carousel">
+                <div class="causes-item"> -->
+                    <div class="causes-img">
+                        <img src='{{ campaign.image.url }}' alt="Image">       
+                    </div>
+                    <div class="causes-progress">
+                        <!-- <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ campaign.progress }}" aria-valuemin="0" aria-valuemax="100">
+                                <span> {{ campaign.progress }}</span>
+                            </div>
+                        
+                        </div> -->
+                        <div class="progress-text">
+                            <p><strong>Raised:</strong> ${{ campaign.amount_raised }}</p>
+                            <p><strong>Goal:</strong> ${{ campaign.goals }}</p>
+                        </div>
+                    </div>
+                    <div class="causes-text">
+                        <h3>{{ campaign.title }}</h3>
+                        <p>{{ campaign.campaign_purpose }}</p>
+                    </div>
+                    <div class="causes-btn">
+                        <a class="btn btn-custom">Learn More</a>
+                        <a class="btn btn-custom" href="{% url 'withdraw' %}">Withdraw</a>
+                    </div>
+                <!-- </div>
+        </div> -->
+    {% endif %}
+    {% endblock %}
