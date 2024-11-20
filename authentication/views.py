@@ -5,6 +5,8 @@ from django.contrib import messages
 from .forms import AccountCreationForm, ProfileForm, AccountUpdateForm
 from django.contrib.auth.models import User
 from .models import Profile
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -51,11 +53,13 @@ def logout_view(request):
     messages.success(request, 'you logged out successfully')
     return redirect('login')
 
-
+@login_required(login_url='login')
 def profile(request):
     address = get_object_or_404(Profile, user=request.user)
     return render(request, 'auths/profile.html' , {'address': address})
 
+
+@login_required(login_url='login')
 def user_update(request):
     if request.user.is_authenticated:
         user_info = User.objects.get(id=request.user.id)
@@ -73,7 +77,8 @@ def user_update(request):
     else:
         messages.success(request, 'you need to login to be able to view this page')
         return redirect('login')
-    
+
+@login_required(login_url='login')
 def profile_update(request):
     if request.user.is_authenticated:
         profile_info = Profile.objects.get(user=request.user)
